@@ -1,0 +1,23 @@
+{
+  "name": "sqa_assignment_final",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest --coverage tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alp4ga/SQA_assignment_final.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alp4ga/SQA_assignment_final/issues"
+  },
+  "homepage": "https://github.com/Alp4ga/SQA_assignment_final#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
