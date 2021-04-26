@@ -6,3 +6,5 @@
 
 "1.1.1" _test_ - Update test documentation
 
+"1.2.1" _development_ - Create Rubric class and tests
+
