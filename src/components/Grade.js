@@ -20,7 +20,9 @@ class Grade {
     }
 
     this.rubric = rubric;
-    this.scores = rubric.criterions.map((criterion) => {return {criterion: criterion.name, score: 0}});
+    this.scores = rubric.criterions.map((criterion) => {
+      return {name: criterion.name, score: 0};
+    });
   }
 
   /**
@@ -29,7 +31,10 @@ class Grade {
    * @param {int} score Score to update for the criterion (Between 1 to 5)
    */
   addScore(criterionName, score) {
-    const index = this.scores.findIndex((score) => {return criterionName === score.criterion.name});
+    const index = this.scores.findIndex((score) => {
+      //console.log(criterionName, '|' ,score)
+      return criterionName === score.name
+    });
     if (index === -1) {
       throw new Error("[Grade] - Criterion doesn't exsit");
     }

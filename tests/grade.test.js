@@ -1,6 +1,5 @@
 const Grade = require('../src/components/Grade.js');
 const Rubric = require('../src/components/Rubric.js');
-const Criterion = require('../src/components/Criterion.js');
 
 test('[Grade] - Not null', () => {
   const rubric = new Rubric('Topic');
@@ -16,8 +15,7 @@ test('[Grade] - constructor - Wrong argument', () => {
 
 test('[Grade] - addScore - Valid argument', () => {
   const rubric = new Rubric('Rubric');
-  const criterion = new Criterion('Criterion');
-  rubric.createCriterion(criterion);
+  rubric.createCriterion('Criterion');
   const grade = new Grade(rubric);
 
   expect(() => grade.addScore('Criterion', 1)).not.toThrow(Error);
@@ -25,8 +23,7 @@ test('[Grade] - addScore - Valid argument', () => {
 
 test('[Grade] - addScore - Wrong argument', () => {
   const rubric = new Rubric('Rubric');
-  const criterion = new Criterion('Criterion');
-  rubric.createCriterion(criterion);
+  rubric.createCriterion('Criterion');
   const grade = new Grade(rubric);
 
   expect(() => grade.addScore('WrongCriterion', 1)).toThrow(Error);
