@@ -8,3 +8,5 @@
 
 "1.2.1" _development_ - Create Rubric class and tests
 
+"1.3.1" _development_ - Create Grade class and tests
+
