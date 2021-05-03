@@ -20,3 +20,7 @@
   - UML v4.0
   - Function to handle studentGrade creation
   - Function to get studentGrade
+
+"1.4.2" _development_ - Create Controller class and tests
+  - UML v5.0
+  - Function for calculation(Average, Standar Deviation, Max, Min)
