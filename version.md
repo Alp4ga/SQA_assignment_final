@@ -24,3 +24,7 @@
 "1.4.2" _development_ - Create Controller class and tests
   - UML v5.0
   - Function for calculation(Average, Standar Deviation, Max, Min)
+
+"1.5.0" _documentation_ Create README documentation
+  - How use the package
+  - How use test & coverage
