@@ -138,11 +138,104 @@ class Controller {
       throw new Error("[Controller] - createStudentGrade - RubricName must be defined");
     }
 
-    return this.grades.map((grade) => {
+    
+    return this.grades.reduce((obj, grade) => {
       if (grade.grade.rubric.name === rubricName) {
-        return grade;
+        obj.push(grade);
       }
-    })
+      return obj;
+    }, []);
+  }
+
+  /**
+   * Get average for a specific rubri
+   * @param {String} rubricName Rubric name for calculation
+   * @param {String} criterionName (optional) Criterion for calculation
+   * @returns Average of student grades from rubric
+   */
+  getAverage(rubricName, criterionName = null) {
+    const sutdentGrades = this.getStudentGrade(rubricName);
+    let sum = 0;
+    let total = 0;
+
+    sutdentGrades.forEach(sutdentGrade => {
+      sutdentGrade.grade.scores.forEach(score => {
+        if (criterionName === null || criterionName === score.name) {
+          sum += score.score;
+          total += 1;
+        }
+      })
+    });
+    
+    return total === 0 ? 0 : sum/total;
+  }
+
+  /**
+   * Get standard Deviation for a specific rubri
+   * @param {String} rubricName Rubric name for calculation
+   * @param {String} criterionName (optional) Criterion for calculation
+   * @returns Standard deviation of student grades from rubric
+   */
+  getStandardDeviation(rubricName, criterionName = null) {
+    const sutdentGrades = this.getStudentGrade(rubricName);
+    const average = this.getAverage(rubricName, criterionName);
+    let sum = 0;
+    let total = 0;
+
+    sutdentGrades.forEach(sutdentGrade => {
+      sutdentGrade.grade.scores.forEach(score => {
+        if (criterionName === null || criterionName === score.name) {
+          sum += Math.pow(score.score - average, 2);
+          total += 1;
+        }
+      });
+    });
+
+    return total === 0 ? 0 : Math.sqrt(sum / total);
+  }
+
+  /**
+   * Get minimum for a specific rubri
+   * @param {String} rubricName Rubric name for calculation
+   * @param {String} criterionName (optional) Criterion for calculation
+   * @returns Minimun of student grades from rubric
+   */
+  getMin(rubricName, criterionName = null) {
+    const sutdentGrades = this.getStudentGrade(rubricName);
+    let min = 6;
+
+    sutdentGrades.forEach(sutdentGrade => {
+      sutdentGrade.grade.scores.forEach(score => {
+        if (criterionName === null || criterionName === score.name) {
+          if (min > score.score) {
+            min = score.score;
+          }
+        }
+      });
+    });
+    return min;
+  }
+
+    /**
+   * Get maximum for a specific rubri
+   * @param {String} rubricName Rubric name for calculation
+   * @param {String} criterionName (optional) Criterion for calculation
+   * @returns Average of student grades from rubric
+   */
+  getMax(rubricName, criterionName = null) {
+    const sutdentGrades = this.getStudentGrade(rubricName);
+    let max = 0;
+
+    sutdentGrades.forEach(sutdentGrade => {
+      sutdentGrade.grade.scores.forEach(score => {
+        if (criterionName === null || criterionName === score.name) {
+          if (max < score.score) {
+            max = score.score;
+          }
+        }
+      });
+    });
+    return max;
   }
 }
 
